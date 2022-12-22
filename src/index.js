@@ -49,7 +49,7 @@ const scrollFunction = () => {
     topBtn.style.display = 'none';
   }
 };
-const topFunction = () => {
+const goTop = () => {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 };
@@ -95,13 +95,13 @@ const fetchPictures = async name => {
 const lightbox = new SimpleLightbox(`.gallery a`, {
   disableRightClick: true,
   captionsData: 'alt',
-  captionDelay: 250,
-  scrollZoom: false,
+  captionDelay: 500,
+  scrollZoom: true,
 });
 
 // gallery
-const renderImages = async res => {
-  const img = await res
+const renderImages = async result => {
+  const img = await result
     .map(
       ({
         webformatURL,
@@ -157,7 +157,7 @@ const scrollPage = () => {
   });
 };
 
-// search heandler
+// search heandling
 const searchHandler = async () => {
   gallery.innerHTML = '';
   page = 1;
@@ -170,7 +170,7 @@ const searchHandler = async () => {
   Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
 };
 
-topBtn.addEventListener('click', topFunction);
+topBtn.addEventListener('click', goTop);
 
 window.onscroll = function () {
   scrollFunction();
